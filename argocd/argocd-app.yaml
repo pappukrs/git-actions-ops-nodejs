@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/pappukrs/git-actions-ops-nodejs'
-    targetRevision: main
+    targetRevision: master
     path: k8s
   destination:
     server: https://kubernetes.default.svc
