@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: my-nodejs-app
-          image: pappukrs/my-nodejs-app:latest  # Image tag will be updated by CI/CD
+          image: pappukrs/my-nodejs-app:20250307115805  # Image tag will be updated by CI/CD
           ports:
             - containerPort: 3000
