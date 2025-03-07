@@ -18,15 +18,16 @@ jobs:
 
       - name: Build and Push Docker Image
         run: |
-          docker build -t pappukrs/my-nodejs-app:${{ env.IMAGE_TAG }} .
+          docker build -t pappukrs/my-nodejs-app:${{ env.IMAGE_TAG }} -t pappukrs/my-nodejs-app:latest .
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
           docker push pappukrs/my-nodejs-app:${{ env.IMAGE_TAG }}
+          docker push pappukrs/my-nodejs-app:latest
 
-      - name: Update Deployment YAML
+      - name: Update Deployment YAML with New Image Tag
         run: |
           sed -i "s|image: pappukrs/my-nodejs-app:.*|image: pappukrs/my-nodejs-app:${{ env.IMAGE_TAG }}|g" k8s/deployment.yaml
 
-      - name: Commit and Push Updated Deployment
+      - name: Commit and Push Updated Deployment YAML
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
